@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#111428,#3d1b4f,#8b2d5b);height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:center;color:#fff}
+.stars,.hearts{position:fixed;inset:0;pointer-events:none}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 2s infinite alternate}
+@keyframes twinkle{from{opacity:.2}to{opacity:1}}
+.heart{position:absolute;bottom:-20px;font-size:20px;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-120vh);opacity:0}}
+.card{width:min(92vw,760px);background:rgba(255,255,255,.12);backdrop-filter:blur(8px);padding:28px;border-radius:18px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+button{padding:14px 30px;border:none;border-radius:30px;font-size:18px;cursor:pointer}
+#content{display:none}
+img{max-width:100%;max-height:70vh;border:12px solid #fff;border-radius:8px;box-shadow:0 10px 25px rgba(0,0,0,.5)}
+p{margin:18px 0;font-size:18px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div class="hearts" id="hearts"></div>
 
+<audio id="music" loop>
+    <source src="07 - Yedemaina Sakhi.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+<div id="start">
+<h1>💌 A Letter For You</h1>
+<p>Click below to open it.</p>
+<button onclick="openLetter()">Open My Letter ❤️</button>
+</div>
+
+<div id="content">
+<img src="sahana.jpg" alt="Letter">
+<p>
+There are things I've wanted to tell you for a long time.<br><br>
+Every conversation with you stayed with me longer than I expected.
+Some people come into our lives and become memories.
+You became someone I never stopped thinking about.<br><br>
+This letter carries what my heart has been trying to say.
+Thank you for reading it. ❤️
+</p>
+</div>
+</div>
+
+<script>
+for(let i=0;i<120;i++){
+ let s=document.createElement("div");
+ s.className="star";
+ s.style.left=Math.random()*100+"vw";
+ s.style.top=Math.random()*100+"vh";
+ s.style.animationDelay=Math.random()*2+"s";
+ document.getElementById("stars").appendChild(s);
+}
+for(let i=0;i<40;i++){
+ let h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="❤️";
+ h.style.left=Math.random()*100+"vw";
+ h.style.animationDuration=(5+Math.random()*5)+"s";
+ document.getElementById("hearts").appendChild(h);
+}
+function openLetter(){
+ document.getElementById("start").style.display="none";
+ document.getElementById("content").style.display="block";
+ const m=document.getElementById("music");
+ m.play().catch(e=>console.log(e));
+}
+</script>
+</body>
+</html>
